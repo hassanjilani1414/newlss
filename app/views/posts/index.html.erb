@@ -1,7 +1,19 @@
-<h1>This is the index of post</h1>
-<% @posts.each do |post|%>
 
-<% post.comments.each do |comment|%>
-  # Your post attribute like name etc
-<% end %>
-<% end %>
+<h1>Listing posts</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Status</th>
+  </tr>
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+      <td><%= post.status %></td>
+
+    </tr>
+  <% end %>
+</table>
