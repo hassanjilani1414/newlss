@@ -1,0 +1,19 @@
+<h1> Create POst </h1>
+
+<form action="/posts" method="post">
+  <%if flash[:errors] %>
+    <%flash[:errors].each do |e| %>
+      <p><%= e%></p>
+    <% end %>
+  <%end %>
+
+  <p>
+    <label>Content</label>
+    <input type="text" name="post[content]">
+  </p>
+  <p>
+    <label>Status</label>
+    <input type="text" name="post[status]">
+  </p>
+  <input type="submit" value="Create">
+</form>

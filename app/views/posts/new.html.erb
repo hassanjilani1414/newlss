@@ -1,16 +1,20 @@
+<%= form_for :post do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
 
-<h1> Create Posts Here</h1>
-<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-<p>
-  <label>Content</label>
-  <input type="text" name="post[title]">
-</p>
-<p>
-  <label>Status</label>
-  <input type="boolean" name="post[status]">
-</p>
-<p>
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </p>
 
-</p>
-<input type="submit" value="Create">
-</form>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
