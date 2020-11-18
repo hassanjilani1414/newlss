@@ -6,6 +6,7 @@
     <th>Title</th>
     <th>Content</th>
     <th>Status</th>
+    <th>Images</th>
   </tr>
 
   <% @post.each do |post| %>
@@ -13,6 +14,12 @@
       <td><%= post.title %></td>
       <td><%= post.content %></td>
       <td><%= post.status %></td>
+
+       <%if post.images.attached? %>
+        <% post.images.each do |image| %>
+        <%= image_tag url_for(image) %>
+        <%end %>
+        <% end %>
 
     </tr>
   <% end %>

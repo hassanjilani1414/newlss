@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
+
   def index
     @post = Post.all
   end
@@ -13,8 +14,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   def create
+
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.images.attach(params[:post][:images])
 
     if @post.save
       redirect_to post_path(@post)
@@ -24,7 +27,7 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-    params.require(:post).permit(:title,:content,:status)
+    params.require(:post).permit(:title,:content,:status,:images=>[:@tempfile,:@original_filename,:@original_filename,:@headers])
   end
 
 end
