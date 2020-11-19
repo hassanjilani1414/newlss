@@ -4,13 +4,10 @@ Rails.application.routes.draw do
   root "users#index"
   resources :users
   resources :friendships
-  resources :posts do
-    resources :comments
-  end
+  resources  :comments
 
-  resources :comments do
-    resources :comments
-  end
+  post 'specific_post', to: "comments#new", as: 'specific'
+
   resources :posts do
     resources :likes
   end

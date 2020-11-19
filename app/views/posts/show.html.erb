@@ -19,10 +19,12 @@
       <%= image_tag url_for(image)%>
       <%end %>
 
-   <% end %>>
+   <% end %>
 </p>
+
 <p><%= @post.likes.count %>
   <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%>
 </p>
+<%= button_to "Comment", specific_path(post_id: @post.id)%>
 <%= button_to 'Like', post_likes_path(@post), method: :post %>
 <%= link_to "Home",root_path %>

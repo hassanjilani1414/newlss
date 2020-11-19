@@ -5,6 +5,7 @@
     <td>Title </td>
     <td>Content</td>
     <td>Status</td>
+    <td>Comment</td>
  </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
       <td><%= post.title %></td>
       <td><%= post.content %></td>
       <td><%= post.status %></td>
+      <td><%= link_to "Add Comment on post",post_path( post.id) %></td>
     </tr>
   <% end %>
   <% end %>

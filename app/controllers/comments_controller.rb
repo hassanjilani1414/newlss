@@ -1,16 +1,24 @@
 class CommentsController < ApplicationController
 
   before_action :find_commentable
+  def  specific_post
 
+  end
   def new
-    @comment = Comment.new
+
+    @post = Post.find_by_id(params[:post_id])
+    @comment = @post.comments.new
   end
 
+
+
   def create
-    @comment = @commentable.comments.new(comment_params)
+    #debugger
+    @post = Post.find_by_id(params[:post_id])
+     @comment = @post.comments.new(comment_params)
 
     if @comment.save
-      redirect_to :back, notice: 'Your comment was successfully posted!'
+      redirect_to :root, notice: 'Your comment was successfully posted!'
     else
       redirect_to :back, notice: "Your comment wasn't posted!"
     end
