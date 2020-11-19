@@ -7,9 +7,19 @@
   <strong>Content:</strong>
   <%= @post.content %>
 </p>
+
 <p>
   <strong>Status:</strong>
   <%= @post.status %>
+</p>
+<p>
+
+  <% if @post.images.attached? %>
+  <%@post.images.each do |image| %>
+      <%= image_tag url_for(image)%>
+      <%end %>
+
+   <% end %>>
 </p>
 <p><%= @post.likes.count %>
   <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%>
