@@ -1,1 +1,12 @@
-<h1>this is comment</h1>
+<h3>This is comments</h3>
+<%= form_for @comment do|f| %>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body, placeholder: "Add a Reply"%>
+
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
