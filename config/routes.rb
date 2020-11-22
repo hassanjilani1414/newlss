@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :likes
   end
 
-
+  post "comments" => "comments#create"
   post "posts"=>"posts#new", as: :post_new
 
 

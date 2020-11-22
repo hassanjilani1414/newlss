@@ -2,26 +2,28 @@
 <table>
   <thead>
   <tr>
-    <td>Title </td>
+    <td>Title</td>
     <td>Content</td>
     <td>Status</td>
- </tr>
+    <td>Comments</td>
+  </tr>
   </thead>
   <tbody>
 
   <% @users.each do |user| %>
-   <%user.posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td><%= post.status %></td>
-    </tr>
-  <% end %>
+    <% user.posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= post.status %></td>
+
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>
-<%= link_to "Create New Posts","/posts/new" %>
-<%= link_to "Show All Posts",post_new_path %>
+<%= link_to "Create New Posts", "/posts/new" %>
+<%= link_to "Show All Posts", post_new_path %>
 <br>
 
 <%= link_to "LogOut", destroy_user_session_path, method: :delete %>
