@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes
   end
+  resources :posts do
+    resources :comments
+  end
 
 
   post "posts"=>"posts#new", as: :post_new
