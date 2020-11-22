@@ -8,10 +8,10 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash[:confirm] = "Your comment was successfully posted!"
-      redirect_to post_comment_path(params[:post_id],@comment.id)
+      redirect_to root_url
     else
       flash[:errors] = @comment.errors.full_messages
-      redirect_to root
+      redirect_to post_path(params[:post_id])
     end
   end
   private
