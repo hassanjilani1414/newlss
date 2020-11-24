@@ -1,28 +1,24 @@
 class CommentsController < ApplicationController
-
-  before_action :find_commentable
-
+  before_action :find_commentable, only: :create
   def new
-    @comment = Comment.new
+    @comment=Comment.new
   end
-
   def create
-    @comment = @commentable.comments.new(comment_params)
-
+    @comment = @commentable.comments.build(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save
-      redirect_to :back, notice: 'Your comment was successfully posted!'
+      flash[:confirm] = "Your comment was successfully posted!"
+      redirect_to post_comment_path(params[:post_id],@comment.id)
     else
-      redirect_to :back, notice: "Your comment wasn't posted!"
+      flash[:errors] = @comment.errors.full_messages
+      redirect_to root
     end
   end
-
   private
-
   def comment_params
-    params.require(:comment).permit(:body)
+   params.require(:comment).permit(:body)
   end
-
-  def find_commentable
+   def find_commentable
     @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
     @commentable = Post.find_by_id(params[:post_id]) if params[:post_id]
   end

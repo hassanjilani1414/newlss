@@ -2,27 +2,33 @@
   <strong>Title:</strong>
   <%= @post.title %>
 </p>
-
 <p>
   <strong>Content:</strong>
   <%= @post.content %>
 </p>
-
 <p>
   <strong>Status:</strong>
   <%= @post.status %>
 </p>
 <p>
-
   <% if @post.images.attached? %>
   <%@post.images.each do |image| %>
       <%= image_tag url_for(image)%>
       <%end %>
-
-   <% end %>>
+   <% end %>
 </p>
 <p><%= @post.likes.count %>
   <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%>
 </p>
+<%= form_for [@post, Comment.new] do |f| %>
+  <%= f.text_area :body, :size=>"20", placeholder: "Add a comment" %><br/>
+  <%= f.submit "Add Comment" %>
+<% end %>
+<ul>s
+  <%= render @post.comments %>
+</ul>
+<ul>
+  <%= render partial: 'comments/comment', collection: @post.comments %>
+</ul>
 <%= button_to 'Like', post_likes_path(@post), method: :post %>
 <%= link_to "Home",root_path %>

@@ -1,29 +1,51 @@
-<h1>This is index of user</h1>
-<table>
-  <thead>
-  <tr>
-    <td>Title </td>
-    <td>Content</td>
-    <td>Status</td>
- </tr>
-  </thead>
-  <tbody>
-
-  <% @users.each do |user| %>
-   <%user.posts.each do |post| %>
+<div>
+  <table>
+    <h1>All User</h1>
     <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td><%= post.status %></td>
+      <td>Emails</td>
+      <td>Method</td>
     </tr>
-  <% end %>
-  <% end %>
-  </tbody>
-</table>
-<%= link_to "Create New Posts","/posts/new" %>
-<%= link_to "Show All Posts",post_new_path %>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td> <%= link_to "Add Friend", friendships_path(:friend_id => user),
+                         method: :post %></td>
+      </tr>
+    <% end %>
+    </tbody>
+    <%=link_to "Show All Friends",user_path(:friend_id) %>
+  </table>
+</div>
+<div>
+  <table>
+    <h1>All Posts</h1>
+    <thead>
+    <tr>
+      <td>Title</td>
+      <td>Content</td>
+      <td>Status</td>
+      <td>Comment</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <% user.posts.each do |post| %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.content %></td>
+          <td><%= post.status %></td>
+          <td><%= link_to "Add Comment on post", post_path(post.id) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%= link_to "Create New Posts", new_post_path %>
+<%= link_to "Show All Posts", post_new_path %>
 <br>
-
 <%= link_to "LogOut", destroy_user_session_path, method: :delete %>
 
 
