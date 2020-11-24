@@ -11,7 +11,7 @@
       <tr>
         <td><%= user.email %></td>
         <td> <%= link_to "Add Friend", friendships_path(:friend_id => user),
-                         :method => :post %></td>
+                         method: :post %></td>
       </tr>
     <% end %>
     </tbody>
@@ -43,7 +43,7 @@
     </tbody>
   </table>
 </div>
-<%= link_to "Create New Posts", "/posts/new" %>
+<%= link_to "Create New Posts", new_post_path %>
 <%= link_to "Show All Posts", post_new_path %>
 <br>
 <%= link_to "LogOut", destroy_user_session_path, method: :delete %>
